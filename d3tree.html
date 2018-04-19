@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>Node-Link Tree</title>
-    <script src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <script src="https://d3js.org/d3.v3.js"></script>
     <style type="text/css">
 
       .node circle {
@@ -60,15 +60,11 @@
         diagonal = d3.svg.diagonal().projection(function(d) { 
           return [d.y, d.x]; 
         });
-        if (!d.target.isRight) {
-          var o = {
-            x: d.target.x0,
-            y: d.target.y0
-          };
 
+        if (!d.target.isRight) {
           d = {
             source: calcLeft(d.source),
-            target: o
+            target: calcLeft(d.target)
           };
           return diagonal(d, i);
         }
