@@ -60,9 +60,13 @@ var calcLeft = function(d) {
     };
 };
 
+// Drag & Drop, mouse whell zomming
 var vis = d3.select("#chart").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
+    .call(d3.behavior.zoom().on("zoom", function () {
+        vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+      }))
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
